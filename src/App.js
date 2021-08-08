@@ -4,7 +4,7 @@ import StartPage from "./containers/StartPage/StartPage";
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route, Redirect
 } from "react-router-dom";
 import {useState, useEffect} from "react";
 
@@ -26,8 +26,13 @@ function App() {
             setSex(user.sex);
         }
     }, []);
+    // If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty
+    // array ([]) as a second argument. This tells React that your effect doesn’t depend on any values from
+    // props or state, so it never needs to re-run. This isn’t handled as a special case — it follows directly
+    // from how the dependencies array always works. If you pass an empty array ([]), the props and state
+    // inside the effect will always have their initial values.
 
-    const getUserProperty = (key) => {
+        const getUserProperty = (key) => {
         switch (key) {
             case 'name':
                 return name;
@@ -54,18 +59,25 @@ function App() {
 
 
     return (
-    <div className="App">
-       <Router>
-           <Switch>
-               <Route path="/">
-                   {isUserRegistered ?
-                       <MainPage /> :
-                       <StartPage setUserProperty={setUserProperty} getUserProperty={getUserProperty} />}
-               </Route>
-           </Switch>
-       </Router>
-    </div>
-  );
+        <div className="App">
+            <Router>
+                <Switch>
+                     <Route exact path="/">
+                        {isUserRegistered ?
+                            <Redirect to="/main" /> :
+                            <Redirect to="/register" />
+                        }
+                    </Route>
+                    <Route path="/register">
+                        <StartPage setUserProperty={setUserProperty} getUserProperty={getUserProperty} />
+                    </Route>
+                    <Route path="/main">
+                        <MainPage />
+                    </Route>
+                </Switch>
+            </Router>
+        </div>
+    );
 }
 
 export default App;

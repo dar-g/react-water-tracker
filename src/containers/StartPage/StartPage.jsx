@@ -1,31 +1,47 @@
-import {Link, Route, Switch} from "react-router-dom";
-import MainPage from "../MainPage/MainPage";
+import {Link, Redirect, Route, Switch, useRouteMatch} from "react-router-dom";
+import {useRef} from "react";
 
 function NameForm(props) {
-    const onClickHandler = () => {
-        console.log('Name form onClickHandler');
-        props.setName('Dasha')
+    const onClickHandler = (event) => {
+        props.setName(saveName);
     };
+
+    const inputNameRef = useRef();
+
+    //todo: add helper in UserService which updates user property in LS
+
+    const saveName = () => {
+        const nameFromInput = inputNameRef.current.value;
+        localStorage.setItem('user', nameFromInput);
+        return nameFromInput;
+    }
+
+    //todo: add validation for input fields, disable button
 
     return (
         <div className="start-screen">
             <p>Let's start</p>
 
-            <label htmlFor="">
-                Name:
-                <input type="text"/>
-            </label>
+            <div className="name-wrapper">
+                <label htmlFor="">
+                    Name:
+                    <input type="text" ref={inputNameRef} />
+                </label>
+                <input type="button" onClick={saveName} value="Save" />
 
-            {/*<button onClick={onClickHandler}>Continue</button>*/}
-            <Link to="/welcome" onClick={onClickHandler}>Continue</Link>
+                <Link to="/register/age" onClick={onClickHandler}>Continue</Link>
+            </div>
         </div>
     );
 }
 
+//todo: make 3 separate components age, weight, etc.
 function Welcome(props) {
     return (
         <div className="start-screen">
             <p>Welcome {props.getName()}</p>
+            <p>Please enter information about you:</p>
+            <UserParams />
         </div>
     );
 }
@@ -33,23 +49,25 @@ function Welcome(props) {
 function UserParams() {
     return (
         <div className="start-screen">
+            <div className="user-form">
+                <div className="input-wrapper">
+                    <label htmlFor="">
+                        Age:
+                        <input type="text"/>
+                    </label>
 
-            <label htmlFor="">
-                Age:
-                <input type="text"/>
-            </label>
+                    <label htmlFor="">
+                        Weight:
+                        <input type="text"/>
+                    </label>
 
-            <label htmlFor="">
-                Weight:
-                <input type="text"/>
-            </label>
-
-            <label htmlFor="">
-                Sex:
-                <input type="text"/>
-            </label>
-
-            <button>Save</button>
+                    <label htmlFor="">
+                        Sex:
+                        <input type="text"/>
+                    </label>
+                </div>
+                <button>Save</button>
+            </div>
         </div>
     );
 }
@@ -60,20 +78,36 @@ const props = {
     getUserProperty: getUserProperty
 }
 */
+// function curry(f) { // curry(f) does the currying transform
+//     return function(a) {
+//         return function(b) {
+//             return f(a, b);
+//         };
+//     };
+// }
 function StartPage({
     setUserProperty,
-   getUserProperty
+    getUserProperty
 }) {
-    const setName = (value) => setUserProperty('name', value);
+    // const curriedSetUserProperty = curry(setUserProperty);
+    // const setName = curriedSetUserProperty('name');
+    const setName = (value) => {
+        return setUserProperty('name', value)
+    };
     const getName = () => getUserProperty('name');
+
+    let { path, url } = useRouteMatch();
 
     return (
         <div className="start-screen">
             <Switch>
-                <Route exact path="/">
+                <Route exact path="/register">
+                    <Redirect to={`${path}/name`} />
+                </Route>
+                <Route path={`${path}/name`}>
                     <NameForm setName={setName} />
                 </Route>
-                <Route exact path="/welcome">
+                <Route path={`${path}/age`}>
                     <Welcome getName={getName} />
                 </Route>
             </Switch>

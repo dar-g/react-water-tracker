@@ -17,3 +17,13 @@ body {
 .welcome-card {
   text-align: center;
 }
+
+.name-wrapper, .input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+}
