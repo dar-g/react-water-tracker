@@ -18,7 +18,7 @@ body {
   text-align: center;
 }
 
-.name-wrapper, .input-wrapper {
+.form-wrapper, .input-wrapper {
   display: flex;
   flex-direction: column;
 }

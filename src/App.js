@@ -12,7 +12,7 @@ function App() {
     const [isUserRegistered, setIsUserRegistered] = useState(false);
     const [name, setName] = useState('');
     const [age, setAge] = useState(0);
-    const [weight, setWeight] = useState('');
+    const [weight, setWeight] = useState(0);
     const [sex, setSex] = useState('');
 
     useEffect(() => {

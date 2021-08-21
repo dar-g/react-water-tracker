@@ -22,79 +22,127 @@ function NameForm(props) {
         <div className="start-screen">
             <p>Let's start</p>
 
-            <div className="name-wrapper">
+            <div className="form-wrapper">
                 <label htmlFor="">
                     Name:
                     <input type="text" ref={inputNameRef} />
                 </label>
                 <input type="button" onClick={saveName} value="Save" />
-
-                <Link to="/register/age" onClick={onClickHandler}>Continue</Link>
             </div>
+
+            <Link to="/register/age" onClick={onClickHandler}>Continue</Link>
         </div>
     );
 }
 
-//todo: make 3 separate components age, weight, etc.
-function Welcome(props) {
+function AgeForm(props) {
+    const onClickHandler = (event) => {
+        props.setAge(saveAge);
+    };
+
+    const inputAgeRef = useRef();
+
+    const saveAge = () => {
+        const ageFromInput = inputAgeRef.current.value;
+        localStorage.setItem('user-age', ageFromInput);
+        return ageFromInput;
+    }
+
     return (
-        <div className="start-screen">
+        <div className="age-form">
             <p>Welcome {props.getName()}</p>
-            <p>Please enter information about you:</p>
-            <UserParams />
-        </div>
-    );
-}
+            <p>Through the next several steps please enter information about you:</p>
 
-function UserParams() {
-    return (
-        <div className="start-screen">
-            <div className="user-form">
-                <div className="input-wrapper">
-                    <label htmlFor="">
-                        Age:
-                        <input type="text"/>
-                    </label>
-
-                    <label htmlFor="">
-                        Weight:
-                        <input type="text"/>
-                    </label>
-
-                    <label htmlFor="">
-                        Sex:
-                        <input type="text"/>
-                    </label>
-                </div>
-                <button>Save</button>
+            <div className="form-wrapper">
+                <label htmlFor="">
+                    Age:
+                    <input type="number" ref={inputAgeRef} />
+                </label>
+                <input type="button" onClick={saveAge} value="Save" />
             </div>
+
+            <Link to="/register/weight" onClick={onClickHandler}>Continue</Link>
         </div>
     );
 }
 
-/*
-const props = {
-    setUserProperty: setUserProperty,
-    getUserProperty: getUserProperty
+function WeightForm(props) {
+    const onClickHandler = (event) => {
+        props.setWeight(saveWeight);
+    };
+
+    const inputWeightRef = useRef();
+
+    const saveWeight = () => {
+        const weightFromInput = inputWeightRef.current.value;
+        localStorage.setItem('user-weight', weightFromInput);
+        return weightFromInput;
+    }
+
+    return (
+        <div className="weight-form">
+            <div className="form-wrapper">
+                <label htmlFor="">
+                    Weight:
+                    <input type="number" ref={inputWeightRef} />
+                    <span>kg</span>
+                </label>
+                <input type="button" onClick={saveWeight} value="Save" />
+            </div>
+
+            <Link to="/register/sex" onClick={onClickHandler}>Continue</Link>
+        </div>
+    );
 }
-*/
-// function curry(f) { // curry(f) does the currying transform
-//     return function(a) {
-//         return function(b) {
-//             return f(a, b);
-//         };
-//     };
-// }
+
+function SexForm(props) {
+    const onClickHandler = (event) => {
+        props.setSex(saveSex);
+    };
+
+    const inputSexRef = useRef();
+
+    const saveSex = () => {
+        const sexFromInput = inputSexRef.current.value;
+        localStorage.setItem('user-sex', sexFromInput);
+        return sexFromInput;
+    }
+
+    return (
+        <div className="sex-form">
+            <div className="form-wrapper">
+                <label htmlFor="">
+                    Sex:
+                    <input type="text" ref={inputSexRef} />
+                </label>
+                <input type="button" onClick={saveSex} value="Save" />
+            </div>
+
+            <Link to="/main" onClick={onClickHandler}>Continue</Link>
+        </div>
+    );
+}
+
 function StartPage({
     setUserProperty,
     getUserProperty
 }) {
-    // const curriedSetUserProperty = curry(setUserProperty);
-    // const setName = curriedSetUserProperty('name');
     const setName = (value) => {
-        return setUserProperty('name', value)
+        return setUserProperty('name', value);
     };
     const getName = () => getUserProperty('name');
+
+    const setAge = (value) => {
+        return setUserProperty('age', value);
+    };
+
+    const setWeight = (value) => {
+        return setUserProperty('weight', value);
+    };
+
+    const setSex = (value) => {
+        return setUserProperty('sex', value);
+    };
 
     let { path, url } = useRouteMatch();
 
@@ -108,7 +156,13 @@ function StartPage({
                     <NameForm setName={setName} />
                 </Route>
                 <Route path={`${path}/age`}>
-                    <Welcome getName={getName} />
+                    <AgeForm getName={getName} setAge={setAge} />
+                </Route>
+                <Route path={`${path}/weight`}>
+                    <WeightForm setWeight={setWeight} />
+                </Route>
+                <Route path={`${path}/sex`}>
+                    <SexForm setSex={setSex} />
                 </Route>
             </Switch>
         </div>
