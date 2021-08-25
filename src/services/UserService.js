@@ -1,11 +1,30 @@
-import {useState} from 'react';
+const UserService = (function () {
+    const userSettings = {
+        name: '',
+        age: '',
+        weight: ''
+    };
 
-function UserService() {
-//    set/get user name
-//    save data in localStorage, check localStorage on page reload
-    const [name, setName] = useState('User');
+    function setUserName (name) {
+        userSettings.name = name;
+    }
 
-}
+    function setUserAge (age) {
+        userSettings.age = age;
+    }
+
+    function saveUserSettingsToLS () {
+        for (let k in userSettings) {
+            localStorage.setItem(`user-${k}`, userSettings[k]);
+        }
+    }
+
+    return {
+        setUserName: setUserName,
+        setUserAge: setUserAge,
+        saveUserSettingsToLS: saveUserSettingsToLS
+    };
+})();
 
 export default UserService;
 

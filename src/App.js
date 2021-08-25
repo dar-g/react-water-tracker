@@ -1,6 +1,6 @@
 import './App.css';
 import MainPage from "./containers/MainPage/MainPage";
-import StartPage from "./containers/StartPage/StartPage";
+import StartPageRouting from "./containers/StartPageRouting/StartPageRouting";
 import {
     BrowserRouter as Router,
     Switch,
@@ -13,7 +13,7 @@ function App() {
     const [name, setName] = useState('');
     const [age, setAge] = useState(0);
     const [weight, setWeight] = useState(0);
-    const [sex, setSex] = useState('');
+    const [gender, setGender] = useState('');
 
     useEffect(() => {
         const user = localStorage.getItem('user');
@@ -23,7 +23,7 @@ function App() {
             setName(user.name);
             setAge(user.age);
             setWeight(user.weight);
-            setSex(user.sex);
+            setGender(user.gender);
         }
     }, []);
     // If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty
@@ -41,7 +41,7 @@ function App() {
             case 'weight':
                 return weight;
             case 'sex':
-                return sex;
+                return gender;
         }
     };
 
@@ -53,7 +53,7 @@ function App() {
             break;
             case 'weight': setWeight(value);
             break;
-            case 'sex': setSex(value);
+            case 'gender': setGender(value);
         }
     }
 
@@ -69,7 +69,7 @@ function App() {
                         }
                     </Route>
                     <Route path="/register">
-                        <StartPage setUserProperty={setUserProperty} getUserProperty={getUserProperty} />
+                        <StartPageRouting setUserProperty={setUserProperty} getUserProperty={getUserProperty} />
                     </Route>
                     <Route path="/main">
                         <MainPage />
