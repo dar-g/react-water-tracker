@@ -1,17 +1,14 @@
-import {Link} from "react-router-dom";
-import {useRef} from "react";
-import UserService from "../../../services/UserService";
+import {Link} from 'react-router-dom';
+import {useRef} from 'react';
+import UserService from '../../../services/UserService';
 
 function WeightForm(props) {
     const inputWeightRef = useRef();
 
     const saveWeight = () => {
         const weightFromInput = inputWeightRef.current.value;
+        props.setWeight(weightFromInput);
         UserService.setUserWeight(weightFromInput);
-    }
-
-    const onClickHandler = (event) => {
-        props.setWeight(saveWeight);
     };
 
     return (
@@ -24,7 +21,13 @@ function WeightForm(props) {
                 </label>
             </div>
 
-            <Link to="/register/gender" onClick={onClickHandler} className="btn">Continue</Link>
+            <Link
+                to="/register/gender"
+                onClick={saveWeight}
+                className="btn"
+            >
+                Continue
+            </Link>
         </div>
     );
 }

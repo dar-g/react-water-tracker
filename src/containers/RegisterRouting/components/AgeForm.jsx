@@ -1,20 +1,15 @@
-import {Link} from "react-router-dom";
-import {useRef} from "react";
-import UserService from "../../../services/UserService";
+import {Link} from 'react-router-dom';
+import {useRef} from 'react';
+import UserService from '../../../services/UserService';
 
 function AgeForm(props) {
     const inputAgeRef = useRef();
 
     const saveAge = () => {
         const ageFromInput = inputAgeRef.current.value;
+        props.setAge(ageFromInput);
         UserService.setUserAge(ageFromInput);
-    }
-
-    const onClickHandler = (event) => {
-        props.setAge(saveAge);
     };
-
-
 
     return (
         <div className="age-form">
@@ -28,7 +23,13 @@ function AgeForm(props) {
                 </label>
             </div>
 
-            <Link to="/register/weight" onClick={onClickHandler} className="btn">Continue</Link>
+            <Link
+                to="/register/weight"
+                onClick={saveAge}
+                className="btn"
+            >
+                Continue
+            </Link>
         </div>
     );
 }

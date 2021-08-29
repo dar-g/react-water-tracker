@@ -1,8 +1,8 @@
-import {Redirect, Route, Switch, useRouteMatch} from "react-router-dom";
-import NameForm from "./components/NameForm";
-import AgeForm from "./components/AgeForm";
-import WeightForm from "./components/WeightForm";
-import GenderForm from "./components/GenderForm";
+import {Redirect, Route, Switch, useRouteMatch} from 'react-router-dom';
+import NameForm from './components/NameForm';
+import AgeForm from './components/AgeForm';
+import WeightForm from './components/WeightForm';
+import GenderForm from './components/GenderForm';
 
 function RegisterRouting({
     setUserProperty,

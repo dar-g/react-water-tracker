@@ -58,6 +58,7 @@ input[type='text'], input[type='number'] {
   text-decoration: none;
   padding: 10px;
 }
+
 input[type='button'], .btn {
   border-radius: 30px;
   color: #fff;
@@ -67,6 +68,7 @@ input[type='button'], .btn {
   cursor: pointer;
   margin-bottom: 30px;
 }
+
 input[type='button']:hover, .btn:hover {
   opacity: 0.9;
 }
@@ -75,12 +77,3 @@ input[type='button']:hover, .btn:hover {
   margin-bottom: 30px;
 }
 
-.inner-link:hover {
-  color: rgb(58, 96, 115);
-  font-weight: bold;
-}
-
-.main-page {
-  display: flex;
-  flex-direction: column;
-}

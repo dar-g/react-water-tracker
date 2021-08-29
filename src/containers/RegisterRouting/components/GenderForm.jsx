@@ -1,24 +1,15 @@
-import {Link} from "react-router-dom";
-import UserService from "../../../services/UserService";
+import {Link} from 'react-router-dom';
+import UserService from '../../../services/UserService';
 
 function GenderForm(props) {
-    // const inputGenderRef = useRef();
-
     const onSelectChange = (event) => {
         props.setGender(event.target.value);
+        UserService.setUserGender(event.target.value);
     }
 
-    // const saveGender = (event) => {
-    //     const genderFromInput = inputGenderRef.current.value;
-    //     UserService.setUserGender(selectedOption);
-    //     UserService.saveUserSettingsToLS();
-    // }
-
-    const onClickHandler = (event) => {
-        UserService.setUserGender(onSelectChange);
+    const onClickHandler = () => {
         UserService.saveUserSettingsToLS();
     };
-
 
     return (
         <div className="gender-form">
@@ -30,11 +21,16 @@ function GenderForm(props) {
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>
-                    {/*<input type="text" ref={inputGenderRef} />*/}
                 </label>
             </div>
 
-            <Link to="/main" onClick={onClickHandler} className="btn">Continue</Link>
+            <Link
+                to="/main"
+                onClick={onClickHandler}
+                className="btn"
+            >
+                Continue
+            </Link>
         </div>
     );
 }

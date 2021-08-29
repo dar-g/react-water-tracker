@@ -1,22 +1,17 @@
-import {Link} from "react-router-dom";
-import {useRef} from "react";
-import UserService from "../../../services/UserService";
+import {Link} from 'react-router-dom';
+import {useRef} from 'react';
+import UserService from '../../../services/UserService';
 
 //todo: add validation for input fields, disable button
 
 function NameForm(props) {
     const inputNameRef = useRef();
 
-    const onClickHandler = (event) => {
-        props.setName(saveName);
+    const saveName = () => {
+        const nameFromInput = inputNameRef.current.value;
+        props.setName(nameFromInput);
+        UserService.setUserName(nameFromInput);
     };
-
-   const saveName = () => {
-       const nameFromInput = inputNameRef.current.value;
-       console.log(typeof nameFromInput, nameFromInput);
-
-       UserService.setUserName(nameFromInput);
-   }
 
     return (
         <div className="name-form">
@@ -30,7 +25,13 @@ function NameForm(props) {
                 <div className="error">Error</div>
             </div>
 
-            <Link to="/register/age" onClick={onClickHandler} className="btn">Continue</Link>
+            <Link
+                to="/register/age"
+                onClick={saveName}
+                className="btn"
+            >
+                Continue
+            </Link>
         </div>
     );
 }

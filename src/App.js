@@ -1,13 +1,13 @@
 import './App.css';
-import MainPage from "./containers/MainPage/MainPage";
-import RegisterRouting from "./containers/RegisterRouting/RegisterRouting";
+import MainPage from './containers/MainPage/MainPage';
+import RegisterRouting from './containers/RegisterRouting/RegisterRouting';
 import {
     BrowserRouter as Router,
     Switch,
     Route, Redirect
-} from "react-router-dom";
-import {useState, useEffect} from "react";
-import UserSettings from "./containers/MainPage/UserSettings";
+} from 'react-router-dom';
+import {useState, useEffect} from 'react';
+import UserSettings from './containers/MainPage/UserSettings';
 
 function App() {
     const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -27,11 +27,6 @@ function App() {
             setGender(user.gender);
         }
     }, []);
-    // If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty
-    // array ([]) as a second argument. This tells React that your effect doesn’t depend on any values from
-    // props or state, so it never needs to re-run. This isn’t handled as a special case — it follows directly
-    // from how the dependencies array always works. If you pass an empty array ([]), the props and state
-    // inside the effect will always have their initial values.
 
     const getUserProperty = (key) => {
         switch (key) {
@@ -70,7 +65,10 @@ function App() {
                         }
                     </Route>
                     <Route path="/register">
-                        <RegisterRouting setUserProperty={setUserProperty} getUserProperty={getUserProperty} />
+                        <RegisterRouting
+                            setUserProperty={setUserProperty}
+                            getUserProperty={getUserProperty}
+                        />
                     </Route>
                     <Route path="/main">
                         <MainPage />
