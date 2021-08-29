@@ -2,7 +2,8 @@ const UserService = (function () {
     const userSettings = {
         name: '',
         age: '',
-        weight: ''
+        weight: '',
+        gender: '',
     };
 
     function setUserName (name) {
@@ -13,6 +14,14 @@ const UserService = (function () {
         userSettings.age = age;
     }
 
+    function setUserWeight (weight) {
+        userSettings.weight = weight;
+    }
+
+    function setUserGender (gender) {
+        userSettings.gender = gender;
+    }
+
     function saveUserSettingsToLS () {
         for (let k in userSettings) {
             localStorage.setItem(`user-${k}`, userSettings[k]);
@@ -20,9 +29,11 @@ const UserService = (function () {
     }
 
     return {
-        setUserName: setUserName,
-        setUserAge: setUserAge,
-        saveUserSettingsToLS: saveUserSettingsToLS
+        setUserName,
+        setUserAge,
+        setUserWeight,
+        setUserGender,
+        saveUserSettingsToLS
     };
 })();
 

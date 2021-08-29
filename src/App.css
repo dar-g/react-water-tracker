@@ -4,14 +4,20 @@ html, body {
 }
 
 body {
-  background: rgba(94, 181, 227, 0.9);
+  font-size: 14px;
+  font-family: Helvetica, Arial, sans-serif;
+  background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));
 }
 
 .App {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 60px);
+  width: calc(100vw - 60px);
+  background: #fff;
+  border-radius: 15px;
+  margin: 30px;
 }
 
 .welcome-card {
@@ -23,7 +29,51 @@ body {
   flex-direction: column;
 }
 
+.form-wrapper {
+  width: 300px;
+}
+
 label {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
+
+input[type='text'], input[type='number'], input[type='button'] {
+  appearance: none;
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+
+input[type='text'], input[type='number'] {
+  border-bottom: 2px solid rgb(58, 123, 213);
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+  padding: 10px;
+}
+
+input[type='button'], .btn {
+  border-radius: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));
+  transition: background 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+input[type='button']:hover, .btn:hover {
+  opacity: 0.9;
+}
+
+.error {
+  margin-bottom: 30px;
+}
+
