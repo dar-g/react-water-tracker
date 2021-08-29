@@ -1,12 +1,13 @@
 import './App.css';
 import MainPage from "./containers/MainPage/MainPage";
-import StartPageRouting from "./containers/StartPageRouting/StartPageRouting";
+import RegisterRouting from "./containers/RegisterRouting/RegisterRouting";
 import {
     BrowserRouter as Router,
     Switch,
     Route, Redirect
 } from "react-router-dom";
 import {useState, useEffect} from "react";
+import UserSettings from "./containers/MainPage/UserSettings";
 
 function App() {
     const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -32,7 +33,7 @@ function App() {
     // from how the dependencies array always works. If you pass an empty array ([]), the props and state
     // inside the effect will always have their initial values.
 
-        const getUserProperty = (key) => {
+    const getUserProperty = (key) => {
         switch (key) {
             case 'name':
                 return name;
@@ -40,7 +41,7 @@ function App() {
                 return age;
             case 'weight':
                 return weight;
-            case 'sex':
+            case 'gender':
                 return gender;
         }
     };
@@ -69,10 +70,13 @@ function App() {
                         }
                     </Route>
                     <Route path="/register">
-                        <StartPageRouting setUserProperty={setUserProperty} getUserProperty={getUserProperty} />
+                        <RegisterRouting setUserProperty={setUserProperty} getUserProperty={getUserProperty} />
                     </Route>
                     <Route path="/main">
                         <MainPage />
+                    </Route>
+                    <Route path="/user-settings">
+                        <UserSettings />
                     </Route>
                 </Switch>
             </Router>

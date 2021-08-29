@@ -1,18 +1,20 @@
 import {Link} from "react-router-dom";
 import {useRef} from "react";
+import UserService from "../../../services/UserService";
 
 function AgeForm(props) {
-    const onClickHandler = (event) => {
-        props.setAge(saveAge);
-    };
-
     const inputAgeRef = useRef();
 
     const saveAge = () => {
         const ageFromInput = inputAgeRef.current.value;
-        localStorage.setItem('user-age', ageFromInput);
-        return ageFromInput;
+        UserService.setUserAge(ageFromInput);
     }
+
+    const onClickHandler = (event) => {
+        props.setAge(saveAge);
+    };
+
+
 
     return (
         <div className="age-form">
@@ -24,10 +26,9 @@ function AgeForm(props) {
                     Age:
                     <input type="number" ref={inputAgeRef} />
                 </label>
-                <input type="button" onClick={saveAge} value="Save" />
             </div>
 
-            <Link to="/register/weight" onClick={onClickHandler}>Continue</Link>
+            <Link to="/register/weight" onClick={onClickHandler} className="btn">Continue</Link>
         </div>
     );
 }

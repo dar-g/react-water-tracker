@@ -4,10 +4,7 @@ import AgeForm from "./components/AgeForm";
 import WeightForm from "./components/WeightForm";
 import GenderForm from "./components/GenderForm";
 
-//todo: add helper in UserService which updates user property in LS
-//todo: add validation for input fields, disable button
-
-function StartPageRouting({
+function RegisterRouting({
     setUserProperty,
     getUserProperty
 }) {
@@ -31,7 +28,7 @@ function StartPageRouting({
     let { path, url } = useRouteMatch();
 
     return (
-        <div className="start-page">
+        <div className="register-page">
             <Switch>
                 <Route exact path="/register">
                     <Redirect to={`${path}/name`} />
@@ -45,7 +42,7 @@ function StartPageRouting({
                 <Route path={`${path}/weight`}>
                     <WeightForm setWeight={setWeight} />
                 </Route>
-                <Route path={`${path}/sex`}>
+                <Route path={`${path}/gender`}>
                     <GenderForm setGender={setGender} />
                 </Route>
             </Switch>
@@ -53,4 +50,4 @@ function StartPageRouting({
     );
 }
 
-export default StartPageRouting;
+export default RegisterRouting;
