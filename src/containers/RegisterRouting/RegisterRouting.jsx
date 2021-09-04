@@ -28,7 +28,7 @@ function RegisterRouting({
     let { path, url } = useRouteMatch();
 
     return (
-        <div className="register-page">
+        <div className="register-page container">
             <Switch>
                 <Route exact path="/register">
                     <Redirect to={`${path}/name`} />

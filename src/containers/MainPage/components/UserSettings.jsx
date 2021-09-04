@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 
 function UserSettings () {
     return (
-        <div className="user-settings">
+        <div className="user-settings container">
             <h1>User Settings</h1>
 
             <p>Your info:</p>

@@ -1,0 +1,24 @@
+.waterCounter {
+    height: 55%;
+}
+
+.counter {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.counterBtn, .countNum {
+    color: rgb(58, 123, 213);
+    font-weight: bold;
+}
+
+.counterBtn {
+    font-size: 60px;
+    cursor: pointer;
+}
+
+.countNum {
+    font-size: 70px;
+}
+
+.progressbar {}
