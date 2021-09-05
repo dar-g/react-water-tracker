@@ -1,6 +1,10 @@
-import {Link} from 'react-router-dom';
+import NavBar from './NavBar';
 
 function UserSettings () {
+    function clearLS() {
+        localStorage.clear();
+    }
+
     return (
         <div className="user-settings container">
             <h1>User Settings</h1>
@@ -11,7 +15,11 @@ function UserSettings () {
             {/*<WeightForm />*/}
             {/*<GenderForm />*/}
 
-            <Link to="/main" className="btn">Back to main</Link>
+            <button onClick={clearLS} className="btn">
+                Logout
+            </button>
+
+            <NavBar />
         </div>
     );
 }

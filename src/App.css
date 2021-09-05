@@ -20,14 +20,14 @@ body {
   height: 100%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 575px) {
   .App {
     width: calc(100vw - 30px);
     height: calc(100vh - 30px);
     margin: 15px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .App {
     width: calc(100vw - 60px);
     height: calc(100vh - 60px);
@@ -95,6 +95,11 @@ input[type='button'], .btn {
   transition: background 0.3s ease;
   cursor: pointer;
   margin-bottom: 30px;
+}
+
+.btn img {
+  width: 30px;
+  filter: invert(1);
 }
 
 input[type='button']:hover, .btn:hover {

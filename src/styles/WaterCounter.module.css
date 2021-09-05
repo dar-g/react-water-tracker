@@ -13,12 +13,14 @@
 }
 
 .counterBtn {
-    font-size: 60px;
+    font-size: 50px;
     cursor: pointer;
 }
 
 .countNum {
+    width: 155px;
     font-size: 70px;
+    text-align: center;
 }
 
 .progressbar {}
