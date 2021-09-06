@@ -1,6 +1,6 @@
-import css from '../../styles/MainPage.module.css';
-import WaterCounter from './components/WaterCounter';
-import NavBar from "./components/NavBar";
+import css from './MainPage.module.css';
+import WaterCounter from '../WaterCounter/WaterCounter';
+import NavBar from "../NavBar/NavBar";
 
 // todo: add a date
 // todo: add a required number for water consumption [weight*0.033]

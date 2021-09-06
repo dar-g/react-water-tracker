@@ -1,4 +1,4 @@
-import css from '../../../styles/WaterCounter.module.css';
+import css from './WaterCounter.module.css';
 import {useState} from 'react';
 
 function WaterCounter () {

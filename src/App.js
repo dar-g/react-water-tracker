@@ -1,5 +1,5 @@
 import './App.css';
-import MainPage from './containers/MainPage/MainPage';
+import MainPage from './containers/MainPage/components/MainPage/MainPage';
 import RegisterRouting from './containers/RegisterRouting/RegisterRouting';
 import {
     BrowserRouter as Router,
