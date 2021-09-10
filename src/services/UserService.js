@@ -33,9 +33,16 @@ const UserService = (function () {
     }
 
     function saveUserSettingsToLS () {
-        for (let k in userSettings) {
-            localStorage.setItem(`user-${k}`, userSettings[k]);
-        }
+        const userToString = JSON.stringify(userSettings);
+        localStorage.setItem('user', userToString);
+    }
+
+    function getUserObjFromLS () {
+        const userFromLS = localStorage.getItem('user');
+        return JSON.parse(userFromLS);
+        // for (let k in parsedObj) {
+        //     console.log(parsedObj[k]);
+        // }
     }
 
     return {
@@ -43,7 +50,8 @@ const UserService = (function () {
         setUserAge,
         setUserWeight,
         setUserGender,
-        saveUserSettingsToLS
+        saveUserSettingsToLS,
+        getUserObjFromLS
     };
 })();
 

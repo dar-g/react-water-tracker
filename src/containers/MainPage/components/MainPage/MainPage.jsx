@@ -2,7 +2,7 @@ import css from './MainPage.module.css';
 import WaterCounter from '../WaterCounter/WaterCounter';
 import NavBar from "../NavBar/NavBar";
 
-// todo: add a date
+// todo: date to helpers
 // todo: add a required number for water consumption [weight*0.033]
 
 function MainPage() {
