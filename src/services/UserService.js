@@ -40,9 +40,6 @@ const UserService = (function () {
     function getUserObjFromLS () {
         const userFromLS = localStorage.getItem('user');
         return JSON.parse(userFromLS);
-        // for (let k in parsedObj) {
-        //     console.log(parsedObj[k]);
-        // }
     }
 
     return {
