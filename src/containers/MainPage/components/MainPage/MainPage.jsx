@@ -1,13 +1,13 @@
 import css from './MainPage.module.css';
 import WaterCounter from '../WaterCounter/WaterCounter';
-import NavBar from "../NavBar/NavBar";
+import NavBar from '../NavBar/NavBar';
+import Day from '../../../../helpers/Day';
 
 // todo: date to helpers
 // todo: add a required number for water consumption [weight*0.033]
 
 function MainPage() {
-    const day = new Date();
-    const dayWithoutTime = day.getFullYear() + '/' + (day.getMonth()+1) + '/' + day.getDate();
+    const dayWithoutTime = Day;
 
     return (
         <div className={`${css.mainPage} container`}>
