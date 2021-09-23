@@ -1,8 +1,8 @@
-import {Redirect, Route, Switch, useRouteMatch} from 'react-router-dom';
-import NameForm from './components/NameForm';
-import AgeForm from './components/AgeForm';
-import WeightForm from './components/WeightForm';
-import GenderForm from './components/GenderForm';
+import {Redirect, Route, Switch, useRouteMatch} from "react-router-dom";
+import NameInput from "./components/NameInput";
+import AgeInput from "./components/AgeInput";
+import WeightInput from "./components/WeightInput";
+import GenderInput from "./components/GenderInput";
 
 function RegisterRouting({
     setUserProperty,
@@ -34,16 +34,16 @@ function RegisterRouting({
                     <Redirect to={`${path}/name`} />
                 </Route>
                 <Route path={`${path}/name`}>
-                    <NameForm setName={setName} />
+                    <NameInput setName={setName} />
                 </Route>
                 <Route path={`${path}/age`}>
-                    <AgeForm getName={getName} setAge={setAge} />
+                    <AgeInput getName={getName} setAge={setAge} />
                 </Route>
                 <Route path={`${path}/weight`}>
-                    <WeightForm setWeight={setWeight} />
+                    <WeightInput setWeight={setWeight} />
                 </Route>
                 <Route path={`${path}/gender`}>
-                    <GenderForm setGender={setGender} />
+                    <GenderInput setGender={setGender} />
                 </Route>
             </Switch>
         </div>

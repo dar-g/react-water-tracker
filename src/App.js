@@ -1,5 +1,5 @@
 import './App.css';
-import MainPage from './containers/MainPage/components/MainPage/MainPage';
+import WaterTracker from './containers/MainPage/components/WaterTracker/WaterTracker';
 import RegisterRouting from './containers/RegisterRouting/RegisterRouting';
 import {
     BrowserRouter as Router,
@@ -72,7 +72,7 @@ function App() {
                         />
                     </Route>
                     <Route path="/main">
-                        <MainPage />
+                        <WaterTracker />
                     </Route>
                     <Route path="/user-statistics">
                         <UserStatistics />

@@ -1,7 +1,6 @@
-.mainPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.waterTracker {}
+
+.content {
     height: 100%;
 }
 

@@ -1,8 +1,8 @@
-import {Link} from 'react-router-dom';
-import {useRef} from 'react';
-import UserService from '../../../services/UserService';
+import {Link} from "react-router-dom";
+import {useRef} from "react";
+import UserService from "../../../services/UserService";
 
-function AgeForm(props) {
+function AgeInput(props) {
     const inputAgeRef = useRef();
 
     const saveAge = () => {
@@ -12,11 +12,11 @@ function AgeForm(props) {
     };
 
     return (
-        <div className="age-form">
+        <div className="age-input register-form">
             <p>Welcome {props.getName()}</p>
             <p>Through the next several steps please enter information about you:</p>
 
-            <div className="form-wrapper">
+            <div className="input-wrapper">
                 <label htmlFor="">
                     Age:
                     <input type="number" ref={inputAgeRef} />
@@ -34,4 +34,4 @@ function AgeForm(props) {
     );
 }
 
-export default AgeForm;
+export default AgeInput;
