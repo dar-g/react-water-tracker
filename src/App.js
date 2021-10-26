@@ -1,5 +1,5 @@
 import './App.css';
-import MainPage from './containers/MainPage/MainPage';
+import WaterTracker from './containers/MainPage/components/WaterTracker/WaterTracker';
 import RegisterRouting from './containers/RegisterRouting/RegisterRouting';
 import {
     BrowserRouter as Router,
@@ -7,7 +7,8 @@ import {
     Route, Redirect
 } from 'react-router-dom';
 import {useState, useEffect} from 'react';
-import UserSettings from './containers/MainPage/UserSettings';
+import UserSettings from './containers/MainPage/components/UserSettings';
+import UserStatistics from './containers/MainPage/components/UserStatistics';
 
 function App() {
     const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -71,7 +72,10 @@ function App() {
                         />
                     </Route>
                     <Route path="/main">
-                        <MainPage />
+                        <WaterTracker />
+                    </Route>
+                    <Route path="/user-statistics">
+                        <UserStatistics />
                     </Route>
                     <Route path="/user-settings">
                         <UserSettings />

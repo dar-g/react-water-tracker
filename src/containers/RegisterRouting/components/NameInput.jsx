@@ -1,10 +1,10 @@
-import {Link} from 'react-router-dom';
-import {useRef} from 'react';
-import UserService from '../../../services/UserService';
+import {Link} from "react-router-dom";
+import {useRef} from "react";
+import UserService from "../../../services/UserService";
 
 //todo: add validation for input fields, disable button
 
-function NameForm(props) {
+function NameInput(props) {
     const inputNameRef = useRef();
 
     const saveName = () => {
@@ -14,10 +14,10 @@ function NameForm(props) {
     };
 
     return (
-        <div className="name-form">
+        <div className="name-input register-form">
             <h1>Let's start</h1>
 
-            <div className="form-wrapper">
+            <div className="input-wrapper">
                 <label htmlFor="">
                     Name:
                     <input type="text" ref={inputNameRef} />
@@ -36,4 +36,4 @@ function NameForm(props) {
     );
 }
 
-export default NameForm;
+export default NameInput;

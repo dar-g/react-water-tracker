@@ -1,0 +1,32 @@
+.waterTracker {}
+
+.content {
+    height: 100%;
+}
+
+.bottomMenu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menuBtn {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));
+    transition: background 0.3s ease;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menuBtn:hover {
+    opacity: 0.9;
+}
+
+.menuBtnImg {
+    width: 30px;
+    filter: invert(1);
+}
+
+

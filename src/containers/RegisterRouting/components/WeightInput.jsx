@@ -1,8 +1,8 @@
-import {Link} from 'react-router-dom';
-import {useRef} from 'react';
-import UserService from '../../../services/UserService';
+import {Link} from "react-router-dom";
+import {useRef} from "react";
+import UserService from "../../../services/UserService";
 
-function WeightForm(props) {
+function WeightInput(props) {
     const inputWeightRef = useRef();
 
     const saveWeight = () => {
@@ -12,8 +12,8 @@ function WeightForm(props) {
     };
 
     return (
-        <div className="weight-form">
-            <div className="form-wrapper">
+        <div className="weight-input register-form">
+            <div className="input-wrapper">
                 <label htmlFor="">
                     Weight:
                     <input type="number" ref={inputWeightRef} />
@@ -32,4 +32,4 @@ function WeightForm(props) {
     );
 }
 
-export default WeightForm;
+export default WeightInput;

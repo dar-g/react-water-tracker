@@ -1,7 +1,7 @@
-import {Link} from 'react-router-dom';
-import UserService from '../../../services/UserService';
+import {Link} from "react-router-dom";
+import UserService from "../../../services/UserService";
 
-function GenderForm(props) {
+function GenderInput(props) {
     const onSelectChange = (event) => {
         props.setGender(event.target.value);
         UserService.setUserGender(event.target.value);
@@ -12,12 +12,12 @@ function GenderForm(props) {
     };
 
     return (
-        <div className="gender-form">
-            <div className="form-wrapper">
+        <div className="gender-input register-form">
+            <div className="input-wrapper">
                 <label>
                     Gender:
                     <select value={props.gender} onChange={onSelectChange}>
-                        <option value=""></option>
+                        <option value="not selected">not selected</option>
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>
@@ -35,4 +35,4 @@ function GenderForm(props) {
     );
 }
 
-export default GenderForm;
+export default GenderInput;

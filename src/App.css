@@ -1,36 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   font-family: Helvetica, Arial, sans-serif;
   background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));
+}
+
+@media (max-width: 575px) {
+  .App {
+    width: calc(100vw - 30px);
+    height: calc(100vh - 30px);
+    margin: 15px;
+  }
+}
+
+@media (min-width: 576px) {
+  .App {
+    width: calc(100vw - 60px);
+    height: calc(100vh - 60px);
+    max-width: 320px;
+    max-height: 568px;
+    margin: 30px;
+  }
 }
 
 .App {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px);
-  width: calc(100vw - 60px);
   background: #fff;
   border-radius: 15px;
-  margin: 30px;
 }
 
-.welcome-card {
-  text-align: center;
-}
-
-.form-wrapper, .input-wrapper {
+.container {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
 }
 
-.form-wrapper {
-  width: 300px;
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 label {
@@ -40,10 +70,14 @@ label {
   margin-bottom: 30px;
 }
 
-input[type='text'], input[type='number'], input[type='button'] {
+input[type='text'], input[type='number'], input[type='button'], button {
   appearance: none;
   outline: none;
   border: none;
+  background: unset;
+}
+
+input[type='text'], input[type='number'], input[type='button'] {
   padding: 10px;
 }
 
@@ -54,7 +88,6 @@ input[type='text'], input[type='number'] {
 .btn {
   display: flex;
   justify-content: center;
-  width: 100%;
   text-decoration: none;
   padding: 10px;
 }
@@ -67,6 +100,11 @@ input[type='button'], .btn {
   transition: background 0.3s ease;
   cursor: pointer;
   margin-bottom: 30px;
+}
+
+.btn img {
+  width: 30px;
+  filter: invert(1);
 }
 
 input[type='button']:hover, .btn:hover {

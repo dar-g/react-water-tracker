@@ -1,0 +1,26 @@
+.counterWrapper {
+    height: 55%;
+}
+
+.counter {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.counterBtn, .countNum {
+    color: rgb(58, 123, 213);
+    font-weight: bold;
+}
+
+.counterBtn {
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.countNum {
+    width: 155px;
+    font-size: 70px;
+    text-align: center;
+}
+
+.progressbar {}
