@@ -24,7 +24,7 @@ function Counter () {
             <div className={css.counter}>
                 <button
                     onClick={decreaseCount}
-                    className={css.counterBtn}
+                    className={`${css.counterBtn} ${(count <= 0) ? css.disabled : ''}`}
                 >&#9660;</button>
 
                 <div className={css.countNum}>{count}</div>

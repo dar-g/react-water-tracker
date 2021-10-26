@@ -17,6 +17,12 @@
     cursor: pointer;
 }
 
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: grayscale(1);
+}
+
 .countNum {
     width: 155px;
     font-size: 70px;
