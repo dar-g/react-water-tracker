@@ -65,7 +65,7 @@ const UserService = (function () {
         }
     }
 
-    function updateConsumptionArr (item) {
+    function updateConsumptionArr (item, sign) {
         const consumptionArr = userSettings.consumption;
         const today = getCurrentDay();
         const todayItemIndex = consumptionArr.findIndex((i) => i.date === today);
@@ -73,8 +73,10 @@ const UserService = (function () {
 
         if (consumptionArr.length === 0 || hasTodaysObj === undefined) {
             consumptionArr.push(item);
-        } else {
+        } else if (sign === '+') {
             consumptionArr[todayItemIndex].water += 200;
+        } else if (sign === '-') {
+            consumptionArr[todayItemIndex].water -= 200;
         }
     }
 

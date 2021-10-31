@@ -4,16 +4,24 @@ import UserService from "../../../../services/UserService";
 import getCurrentDay from "../../../../helpers/getCurrentDay";
 
 function Counter () {
-    const [count, setCount] = useState(0); // place into initial state a func not 0
+    // todo: place into initial state a func not 0
+    const [count, setCount] = useState(0);
+    const today = getCurrentDay();
+
     const increaseCount = () => {
-        const currentDay = getCurrentDay();
         const newCount = count + 200;
         setCount(newCount);
-        let dayConsumptionObj = UserService.saveLiquidConsumption(currentDay, newCount);
-        UserService.updateConsumptionArr(dayConsumptionObj);
+        let dayConsumptionObj = UserService.saveLiquidConsumption(today, newCount);
+        UserService.updateConsumptionArr(dayConsumptionObj, '+');
         UserService.saveUserSettingsToLS();
     }
-    const decreaseCount = () => setCount(count - 200);
+    const decreaseCount = () => {
+        const newCount = count - 200;
+        setCount(newCount);
+        let dayConsumptionObj = UserService.saveLiquidConsumption(today, newCount);
+        UserService.updateConsumptionArr(dayConsumptionObj, '-');
+        UserService.saveUserSettingsToLS();
+    }
 
     const dailyWaterIntake = UserService.calcRequiredWaterQuantity();
 
