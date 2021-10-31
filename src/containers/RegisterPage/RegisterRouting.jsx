@@ -25,7 +25,7 @@ function RegisterRouting({
         return setUserProperty('gender', value);
     };
 
-    let { path, url } = useRouteMatch();
+    let { path } = useRouteMatch();
 
     return (
         <div className="register-page container">

@@ -1,6 +1,6 @@
 import './App.css';
 import WaterTracker from './containers/MainPage/components/WaterTracker/WaterTracker';
-import RegisterRouting from './containers/RegisterRouting/RegisterRouting';
+import RegisterRouting from './containers/RegisterPage/RegisterRouting';
 import {
     BrowserRouter as Router,
     Switch,
@@ -78,7 +78,7 @@ function App() {
                         <UserStatistics />
                     </Route>
                     <Route path="/user-settings">
-                        <UserSettings />
+                        <UserSettings getUserProperty={getUserProperty} />
                     </Route>
                 </Switch>
             </Router>
