@@ -1,12 +1,13 @@
-import {Redirect, Route, Switch, useRouteMatch} from "react-router-dom";
+import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import NameInput from "./components/NameInput";
 import AgeInput from "./components/AgeInput";
 import WeightInput from "./components/WeightInput";
 import GenderInput from "./components/GenderInput";
 
-function RegisterRouting({
-    setUserProperty,
-    getUserProperty
+function RegisterPage({
+  setUserProperty,
+  getUserProperty,
+  setIsUserRegistered,
 }) {
     const setName = (value) => {
         return setUserProperty('name', value);
@@ -43,11 +44,14 @@ function RegisterRouting({
                     <WeightInput setWeight={setWeight} />
                 </Route>
                 <Route path={`${path}/gender`}>
-                    <GenderInput setGender={setGender} />
+                    <GenderInput
+                      setGender={setGender}
+                      setIsUserRegistered={setIsUserRegistered}
+                    />
                 </Route>
             </Switch>
         </div>
     );
 }
 
-export default RegisterRouting;
+export default RegisterPage;

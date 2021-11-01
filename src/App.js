@@ -1,16 +1,19 @@
-import './App.css';
-import WaterTracker from './containers/MainPage/components/WaterTracker/WaterTracker';
-import RegisterRouting from './containers/RegisterPage/RegisterRouting';
+import React, {useState, useEffect} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route, Redirect
+    Route,
+    Redirect,
 } from 'react-router-dom';
-import {useState, useEffect} from 'react';
-import UserSettings from './containers/MainPage/components/UserSettings';
-import UserStatistics from './containers/MainPage/components/UserStatistics';
+import routes from './routerConfigs';
+import UserService from "./services/UserService";
+import LoginPage from './containers/LoginPage/index';
+import RegisterPage from './containers/RegisterPage/index';
+import MainPage from './containers/MainPage/index';
+import './App.css';
 
 function App() {
+    const [isLoading, setIsLoading] = useState(true);
     const [isUserRegistered, setIsUserRegistered] = useState(false);
     const [name, setName] = useState('');
     const [age, setAge] = useState(0);
@@ -18,15 +21,19 @@ function App() {
     const [gender, setGender] = useState('');
 
     useEffect(() => {
-        const user = localStorage.getItem('user');
-
-        if(user) {
-            setIsUserRegistered(true);
-            setName(user.name);
-            setAge(user.age);
-            setWeight(user.weight);
-            setGender(user.gender);
-        }
+        UserService.getUserObjFromLS()
+            .then((res) => {
+                const user = JSON.parse(res);
+                if(user) {
+                  setIsUserRegistered(true);
+                  setName(user.name);
+                  setAge(user.age);
+                  setWeight(user.weight);
+                  setGender(user.gender);
+                }
+                setIsLoading(false);
+            })
+            .catch((error) => {});
     }, []);
 
     const getUserProperty = (key) => {
@@ -54,35 +61,45 @@ function App() {
         }
     }
 
-
     return (
-        <div className="App">
+      <React.Fragment>
+        {isLoading && <div>Loading ...</div>}
+
+        {!isLoading && (
+          <div className="App">
             <Router>
-                <Switch>
-                     <Route exact path="/">
-                        {isUserRegistered ?
-                            <Redirect to="/main" /> :
-                            <Redirect to="/register" />
-                        }
-                    </Route>
-                    <Route path="/register">
-                        <RegisterRouting
-                            setUserProperty={setUserProperty}
-                            getUserProperty={getUserProperty}
-                        />
-                    </Route>
-                    <Route path="/main">
-                        <WaterTracker />
-                    </Route>
-                    <Route path="/user-statistics">
-                        <UserStatistics />
-                    </Route>
-                    <Route path="/user-settings">
-                        <UserSettings getUserProperty={getUserProperty} />
-                    </Route>
-                </Switch>
+              <Switch>
+                 <Route
+                    exact
+                    path="/"
+                    render={() => {
+                      return isUserRegistered ?
+                          <Redirect to="/main" /> :
+                          <Redirect to="/register" />;
+                    }}
+                 >
+                </Route>
+                <Route path="/login">
+                  <LoginPage />
+                </Route>
+                <Route path="/register">
+                  <RegisterPage
+                     getUserProperty={getUserProperty}
+                     setUserProperty={setUserProperty}
+                     setIsUserRegistered={setIsUserRegistered}
+                  />
+                </Route>
+                <Route path="/main">
+                  <MainPage
+                    isUserRegistered={isUserRegistered}
+                    getUserProperty={getUserProperty}
+                  />
+                </Route>
+              </Switch>
             </Router>
-        </div>
+          </div>
+        )}
+      </React.Fragment>
     );
 }
 
