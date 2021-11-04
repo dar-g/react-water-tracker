@@ -66,23 +66,15 @@ const UserService = (function () {
     }
 
     function updateConsumptionArr (item) {
-        // userSettings.consumption.push(item);
-
-        // WIP
         const consumptionArr = userSettings.consumption;
         const today = getCurrentDay();
+        const todayItemIndex = consumptionArr.findIndex((i) => i.date === today);
+        const hasTodaysObj = consumptionArr.find(i => i.date === today);
 
-        if (consumptionArr.length === 0) {
-            console.log(consumptionArr, consumptionArr.length);
+        if (consumptionArr.length === 0 || hasTodaysObj === undefined) {
             consumptionArr.push(item);
         } else {
-            for (let i = 0; i < consumptionArr.length; i++) {
-                if (consumptionArr[i].date !== today) {
-                    consumptionArr.push(item);
-                } else if (consumptionArr[i].date === today) {
-                    consumptionArr[i].water += 200;
-                }
-            }
+            consumptionArr[todayItemIndex].water += 200;
         }
     }
 
