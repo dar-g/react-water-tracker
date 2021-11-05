@@ -18,7 +18,7 @@ function WaterTracker() {
         <div className={`${css.waterTracker} container`}>
             <div className={css.content}>
                 <h1>Water Tracker</h1>
-                <div className="date">Today: {getCurrentDay()}</div>
+                <div className="date">Today: {today}</div>
                 <Counter updateWaterConsumption={updateWaterConsumption} />
             </div>
             <NavBar />

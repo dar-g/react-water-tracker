@@ -1,27 +1,23 @@
 import css from "./Counter.module.css";
 import {useState} from "react";
 import UserService from "../../../../services/UserService";
-import getCurrentDay from "../../../../helpers/getCurrentDay";
 
 function Counter ({
     updateWaterConsumption
 }) {
     // todo: place into initial state a func not 0
     const [count, setCount] = useState(0);
-    const today = getCurrentDay();
 
     const increaseCount = () => {
         const newCount = count + 200;
         setCount(newCount);
         updateWaterConsumption(newCount, '+');
     }
-    // todo: simplify decrease func thesame as increase
+
     const decreaseCount = () => {
         const newCount = count - 200;
         setCount(newCount);
-        let dayConsumptionObj = UserService.saveLiquidConsumption(today, newCount);
-        UserService.updateConsumptionArr(dayConsumptionObj, '-');
-        UserService.saveUserSettingsToLS();
+        updateWaterConsumption(newCount, '-');
     }
 
     const dailyWaterIntake = UserService.calcRequiredWaterQuantity();

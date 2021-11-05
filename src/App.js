@@ -5,7 +5,6 @@ import {
     Route,
     Redirect,
 } from 'react-router-dom';
-import routes from './routerConfigs';
 import UserService from "./services/UserService";
 import LoginPage from './containers/LoginPage/index';
 import RegisterPage from './containers/RegisterPage/index';

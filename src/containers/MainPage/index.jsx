@@ -16,7 +16,7 @@ const MainPage = ({
   };
 
   return (
-    <div style={{height: '100%'}}>
+    <main className="main">
       <Switch>
         <Route exact path="/main">
             <Redirect to={`${path}/tracker`} />
@@ -31,7 +31,7 @@ const MainPage = ({
             <UserSettings getUserProperty={getUserProperty} />
         </Route>
       </Switch>
-    </div>
+    </main>
 
   );
 }
