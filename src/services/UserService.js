@@ -58,21 +58,15 @@ const UserService = (function () {
         });
     }
 
-    function saveLiquidConsumption (date, water) {
-        return {
-            date,
-            water
-        }
-    }
-
-    function updateConsumptionArr (item, sign) {
+    function updateConsumptionArr (date, water, sign) {
         const consumptionArr = userSettings.consumption;
+        const dayObj = {date, water};
         const today = getCurrentDay();
         const todayItemIndex = consumptionArr.findIndex((i) => i.date === today);
         const hasTodaysObj = consumptionArr.find(i => i.date === today);
 
         if (consumptionArr.length === 0 || hasTodaysObj === undefined) {
-            consumptionArr.push(item);
+            consumptionArr.push(dayObj);
         } else if (sign === '+') {
             consumptionArr[todayItemIndex].water += 200;
         } else if (sign === '-') {
@@ -93,7 +87,6 @@ const UserService = (function () {
         setUserGender,
         saveUserSettingsToLS,
         getUserObjFromLS,
-        saveLiquidConsumption,
         updateConsumptionArr,
         calcRequiredWaterQuantity
     };

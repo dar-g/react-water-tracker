@@ -8,9 +8,9 @@ import UserService from "../../../../services/UserService";
 
 function WaterTracker() {
     const today = getCurrentDay();
-    const updateWaterConsumption = (newCount, sign) => {
-        let dayConsumptionObj = UserService.saveLiquidConsumption(today, newCount);
-        UserService.updateConsumptionArr(dayConsumptionObj, sign);
+
+    const updateWaterConsumption = (date, newCount, sign) => {
+        UserService.updateConsumptionArr(date, newCount, sign);
         UserService.saveUserSettingsToLS();
     }
 
@@ -19,7 +19,9 @@ function WaterTracker() {
             <div className={css.content}>
                 <h1>Water Tracker</h1>
                 <div className="date">Today: {today}</div>
-                <Counter updateWaterConsumption={updateWaterConsumption} />
+                <Counter
+                    updateWaterConsumption={updateWaterConsumption}
+                />
             </div>
             <NavBar />
         </div>

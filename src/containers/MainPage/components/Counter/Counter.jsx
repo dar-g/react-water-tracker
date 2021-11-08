@@ -1,23 +1,29 @@
 import css from "./Counter.module.css";
 import {useState} from "react";
 import UserService from "../../../../services/UserService";
+import getCurrentDay from "../../../../helpers/getCurrentDay";
 
 function Counter ({
     updateWaterConsumption
 }) {
     // todo: place into initial state a func not 0
+    // 1.Get consumption array from LS, parse
+    // 2.Find today's object water
+    // 3.If no today's object: count=0, else count=water value
+
+    const today = getCurrentDay();
     const [count, setCount] = useState(0);
 
     const increaseCount = () => {
         const newCount = count + 200;
         setCount(newCount);
-        updateWaterConsumption(newCount, '+');
+        updateWaterConsumption(today, newCount, '+');
     }
 
     const decreaseCount = () => {
         const newCount = count - 200;
         setCount(newCount);
-        updateWaterConsumption(newCount, '-');
+        updateWaterConsumption(today, newCount, '-');
     }
 
     const dailyWaterIntake = UserService.calcRequiredWaterQuantity();
