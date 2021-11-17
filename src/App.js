@@ -11,6 +11,7 @@ import RegisterPage from './containers/RegisterPage/index';
 import MainPage from './containers/MainPage/index';
 import './App.css';
 
+//todo: fix ESLint
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -21,9 +22,8 @@ function App() {
 
     useEffect(() => {
         UserService.getUserObjFromLS()
-            .then((res) => {
-                const user = JSON.parse(res);
-                if(user) {
+            .then((user) => {
+                if (user) {
                   setIsUserRegistered(true);
                   setName(user.name);
                   setAge(user.age);

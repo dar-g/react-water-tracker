@@ -49,7 +49,14 @@ const UserService = (function () {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 try {
-                    const userFromLS = localStorage.getItem('user');
+                    const userFromLS = JSON.parse(localStorage.getItem('user'));
+
+                    userSettings.name = userFromLS.name;
+                    userSettings.age = userFromLS.age;
+                    userSettings.weight = userFromLS.weight;
+                    userSettings.gender = userFromLS.gender;
+                    userSettings.consumption = userFromLS.consumption;
+
                     resolve(userFromLS);
                 } catch (error) {
                     reject(error);
@@ -58,10 +65,10 @@ const UserService = (function () {
         });
     }
 
-    function updateConsumptionArr (date, water, sign) {
-        const consumptionArr = userSettings.consumption;
-        const dayObj = {date, water};
+    function updateConsumptionArr (water, sign) {
         const today = getCurrentDay();
+        const consumptionArr = userSettings.consumption;
+        const dayObj = {date:today, water};
         const todayItemIndex = consumptionArr.findIndex((i) => i.date === today);
         const hasTodaysObj = consumptionArr.find(i => i.date === today);
 

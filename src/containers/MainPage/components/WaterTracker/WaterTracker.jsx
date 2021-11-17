@@ -4,13 +4,15 @@ import NavBar from "../NavBar/NavBar";
 import getCurrentDay from "../../../../helpers/getCurrentDay";
 import UserService from "../../../../services/UserService";
 
-// todo: check if count already exists in LS
-
+// todo: put here decrease, increase functions and count state
+// todo: add progress bar
+// todo: User Settings page: add inputs
+// todo: User Statistics charts
 function WaterTracker() {
     const today = getCurrentDay();
 
-    const updateWaterConsumption = (date, newCount, sign) => {
-        UserService.updateConsumptionArr(date, newCount, sign);
+    const updateWaterConsumption = (newCount, sign) => {
+        UserService.updateConsumptionArr(newCount, sign);
         UserService.saveUserSettingsToLS();
     }
 

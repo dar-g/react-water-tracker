@@ -4,6 +4,7 @@ import AgeInput from "./components/AgeInput";
 import WeightInput from "./components/WeightInput";
 import GenderInput from "./components/GenderInput";
 
+// todo: one page of registration instead of four
 function RegisterPage({
   setUserProperty,
   getUserProperty,

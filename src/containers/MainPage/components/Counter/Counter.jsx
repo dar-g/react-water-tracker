@@ -6,24 +6,23 @@ import getCurrentDay from "../../../../helpers/getCurrentDay";
 function Counter ({
     updateWaterConsumption
 }) {
-    const today = getCurrentDay();
     const [count, setCount] = useState(0);
 
     const increaseCount = () => {
         const newCount = count + 200;
         setCount(newCount);
-        updateWaterConsumption(today, newCount, '+');
+        updateWaterConsumption(newCount, '+');
     }
 
     const decreaseCount = () => {
         const newCount = count - 200;
         setCount(newCount);
-        updateWaterConsumption(today, newCount, '-');
+        updateWaterConsumption(newCount, '-');
     }
 
     useEffect(() => {
-        UserService.getUserObjFromLS().then((res) => {
-            const user = JSON.parse(res);
+        UserService.getUserObjFromLS().then((user) => {
+            const today = getCurrentDay();
             const userConsumption = user.consumption;
             const todayObjIndex = userConsumption.findIndex((i) => i.date === today);
 
