@@ -3,11 +3,12 @@ import Counter from "../Counter/Counter";
 import NavBar from "../NavBar/NavBar";
 import getCurrentDay from "../../../../helpers/getCurrentDay";
 import UserService from "../../../../services/UserService";
+import {useEffect, useState} from "react";
 
-// todo: put here decrease, increase functions and count state
 // todo: add progress bar
 // todo: User Settings page: add inputs
 // todo: User Statistics charts
+// todo: show average amount of daily water intake if no data on weight, not 0.0
 function WaterTracker() {
     const today = getCurrentDay();
 
@@ -16,13 +17,46 @@ function WaterTracker() {
         UserService.saveUserSettingsToLS();
     }
 
+    const [count, setCount] = useState(0);
+
+    const increaseCount = () => {
+        const newCount = count + 200;
+        setCount(newCount);
+        updateWaterConsumption(newCount, '+');
+    }
+
+    const decreaseCount = () => {
+        const newCount = count - 200;
+        setCount(newCount);
+        updateWaterConsumption(newCount, '-');
+    }
+
+    useEffect(() => {
+        UserService.getUserObjFromLS().then((user) => {
+            const today = getCurrentDay();
+            const userConsumption = user.consumption;
+            const todayObjIndex = userConsumption.findIndex((i) => i.date === today);
+
+            if (userConsumption[todayObjIndex] === -1) {
+                setCount(userConsumption[todayObjIndex].water = 0);
+            } else {
+                setCount(userConsumption[todayObjIndex].water);
+            }
+        }).catch((error) => {});
+    }, []);
+
+    const dailyWaterIntake = UserService.calcRequiredWaterQuantity();
+
     return (
         <div className={`${css.waterTracker} container`}>
             <div className={css.content}>
                 <h1>Water Tracker</h1>
                 <div className="date">Today: {today}</div>
                 <Counter
-                    updateWaterConsumption={updateWaterConsumption}
+                    count={count}
+                    increaseCount={increaseCount}
+                    decreaseCount={decreaseCount}
+                    dailyWaterIntake={dailyWaterIntake}
                 />
             </div>
             <NavBar />
