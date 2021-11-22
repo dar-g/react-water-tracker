@@ -49,15 +49,18 @@ const UserService = (function () {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 try {
-                    const userFromLS = JSON.parse(localStorage.getItem('user'));
+                    const userFromLS = localStorage.getItem('user');
+                    const parsedUserObj = userFromLS ? JSON.parse(userFromLS) : userSettings;
 
-                    userSettings.name = userFromLS.name;
-                    userSettings.age = userFromLS.age;
-                    userSettings.weight = userFromLS.weight;
-                    userSettings.gender = userFromLS.gender;
-                    userSettings.consumption = userFromLS.consumption;
+                    if (userFromLS) {
+                        userSettings.name = parsedUserObj.name;
+                        userSettings.age = parsedUserObj.age;
+                        userSettings.weight = parsedUserObj.weight;
+                        userSettings.gender = parsedUserObj.gender;
+                        userSettings.consumption = parsedUserObj.consumption;
+                    }
 
-                    resolve(userFromLS);
+                    resolve(parsedUserObj);
                 } catch (error) {
                     reject(error);
                 }

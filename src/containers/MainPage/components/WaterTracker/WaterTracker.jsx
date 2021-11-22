@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import getCurrentDay from "../../../../helpers/getCurrentDay";
 import UserService from "../../../../services/UserService";
 import {useEffect, useState} from "react";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 // todo: add progress bar
 // todo: User Settings page: add inputs
@@ -45,8 +46,6 @@ function WaterTracker() {
         }).catch((error) => {});
     }, []);
 
-    const dailyWaterIntake = UserService.calcRequiredWaterQuantity();
-
     return (
         <div className={`${css.waterTracker} container`}>
             <div className={css.content}>
@@ -56,7 +55,9 @@ function WaterTracker() {
                     count={count}
                     increaseCount={increaseCount}
                     decreaseCount={decreaseCount}
-                    dailyWaterIntake={dailyWaterIntake}
+                />
+                <ProgressBar
+                    count={count}
                 />
             </div>
             <NavBar />

@@ -11,7 +11,7 @@ import RegisterPage from './containers/RegisterPage/index';
 import MainPage from './containers/MainPage/index';
 import './App.css';
 
-//todo: fix ESLint
+// todo: fix ESLint
 function App() {
     const [isLoading, setIsLoading] = useState(true);
     const [isUserRegistered, setIsUserRegistered] = useState(false);
@@ -23,7 +23,7 @@ function App() {
     useEffect(() => {
         UserService.getUserObjFromLS()
             .then((user) => {
-                if (user) {
+                if (user.name) {
                   setIsUserRegistered(true);
                   setName(user.name);
                   setAge(user.age);

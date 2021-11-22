@@ -3,8 +3,7 @@ import css from "./Counter.module.css";
 function Counter ({
     count,
     increaseCount,
-    decreaseCount,
-    dailyWaterIntake
+    decreaseCount
 }) {
     return (
         <div className={css.counterWrapper}>
@@ -22,13 +21,6 @@ function Counter ({
                     onClick={increaseCount}
                     className={css.counterBtn}
                 >&#9650;</button>
-            </div>
-
-            <div className={css.progressbar}>
-                <span>Drank today: </span>
-                <span>{count}</span>
-                <span> ml </span>
-                <span>{dailyWaterIntake} of water</span>
             </div>
         </div>
     );
