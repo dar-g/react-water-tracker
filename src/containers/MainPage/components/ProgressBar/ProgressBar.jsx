@@ -5,13 +5,19 @@ function ProgressBar ({
     count
 }) {
     const dailyWaterIntake = UserService.calcRequiredWaterQuantity();
+    const calcDrankPercent = count / dailyWaterIntake * 100;
+    const progressLineWidth = { width: calcDrankPercent+'%' };
+    const normFulfilled = count >= dailyWaterIntake ? { 'border-color': 'limegreen' } : {};
 
     return (
-        <div className={css.progressbar}>
-            <span>Drank today: </span>
-            <span>{count}</span>
-            <span> ml </span>
-            <span>{dailyWaterIntake} of water</span>
+        <div className="progressBarWrapper">
+            <div className={css.progressBarText}>
+                <span>Drank today: </span>
+                <span>{count} / {dailyWaterIntake} ml of water</span>
+            </div>
+            <div className={css.progressBarHolder} style={normFulfilled}>
+                <div className={css.progressBar} style={progressLineWidth} />
+            </div>
         </div>
     );
 }

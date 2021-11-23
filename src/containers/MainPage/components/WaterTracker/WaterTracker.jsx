@@ -6,10 +6,9 @@ import UserService from "../../../../services/UserService";
 import {useEffect, useState} from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-// todo: add progress bar
 // todo: User Settings page: add inputs
 // todo: User Statistics charts
-// todo: show average amount of daily water intake if no data on weight, not 0.0
+
 function WaterTracker() {
     const today = getCurrentDay();
 

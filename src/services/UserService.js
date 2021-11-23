@@ -85,8 +85,10 @@ const UserService = (function () {
     }
 
     function calcRequiredWaterQuantity () {
-        if (userSettings.weight !== '' || userSettings.weight !== 0) {
-            return (userSettings.weight * 0.03).toFixed(1);
+        if (userSettings.weight === '' || userSettings.weight === '0') {
+            return 1500;
+        } else {
+            return (userSettings.weight * 0.03 * 1000).toFixed(1);
         }
     }
 
