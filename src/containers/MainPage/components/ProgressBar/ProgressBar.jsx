@@ -4,16 +4,16 @@ import UserService from "../../../../services/UserService";
 function ProgressBar ({
     count
 }) {
-    const dailyWaterIntake = UserService.calcRequiredWaterQuantity();
-    const calcDrankPercent = count / dailyWaterIntake * 100;
-    const progressLineWidth = { width: calcDrankPercent+'%' };
-    const normFulfilled = count >= dailyWaterIntake ? { 'border-color': 'limegreen' } : {};
+    const requiredWaterQuantity = UserService.calcRequiredWaterQuantity();
+    const calcTodayDrankPercent = UserService.calcDrankPercent(count);
+    const progressLineWidth = { width: calcTodayDrankPercent+'%' };
+    const normFulfilled = count >= requiredWaterQuantity ? { 'borderColor': 'limegreen' } : {};
 
     return (
         <div className="progressBarWrapper">
             <div className={css.progressBarText}>
                 <span>Drank today: </span>
-                <span>{count} / {dailyWaterIntake} ml of water</span>
+                <span>{count} / {requiredWaterQuantity} ml of water</span>
             </div>
             <div className={css.progressBarHolder} style={normFulfilled}>
                 <div className={css.progressBar} style={progressLineWidth} />

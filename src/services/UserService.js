@@ -40,6 +40,10 @@ const UserService = (function () {
         userSettings.gender = gender;
     }
 
+    function getUserConsumption () {
+        return userSettings.consumption;
+    }
+
     function saveUserSettingsToLS () {
         const userToString = JSON.stringify(userSettings);
         localStorage.setItem('user', userToString);
@@ -92,15 +96,22 @@ const UserService = (function () {
         }
     }
 
+    function calcDrankPercent (drankCount) {
+        const requiredWaterQuantity = calcRequiredWaterQuantity();
+        return drankCount / requiredWaterQuantity * 100;
+    }
+
     return {
         setUserName,
         setUserAge,
         setUserWeight,
         setUserGender,
+        getUserConsumption,
         saveUserSettingsToLS,
         getUserObjFromLS,
         updateConsumptionArr,
-        calcRequiredWaterQuantity
+        calcRequiredWaterQuantity,
+        calcDrankPercent
     };
 })();
 
