@@ -8,10 +8,16 @@ function UserStatistics () {
     const userDay = userConsumptionArr.map(item => {
             const calcEachDayDrankPercent = UserService.calcDrankPercent(item.water);
             const progressLineWidth = { width: calcEachDayDrankPercent+'%' };
+            const dateOptions = {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
+            };
+            const prettyDate = new Date(item.date).toLocaleDateString('en-EN', dateOptions);
 
             return (
                 <div key={item.date} className={css.statisticsDay}>
-                    <div className={css.date}>{item.date}:</div>
+                    <div className={css.date}>{prettyDate}</div>
                     <div className={css.waterHolder}>
                         <div className={css.water} style={progressLineWidth} />
                     </div>

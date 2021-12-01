@@ -10,6 +10,7 @@
 .statisticsDay {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
 }
 
@@ -18,7 +19,7 @@
 }
 
 .waterHolder {
-    width: 100%;
+    width: calc(100% - 90px);
     height: 15px;
     background: lightgrey;
     border-radius: 5px;
