@@ -1,11 +1,10 @@
-import {Route, Switch, useRouteMatch} from "react-router-dom";
+import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import NameInput from "./components/NameInput";
 import AgeInput from "./components/AgeInput";
 import WeightInput from "./components/WeightInput";
 import GenderInput from "./components/GenderInput";
 
-// todo: add validation for input fields, disable button
-
+// todo: one page of registration instead of four
 function RegisterPage({
   setUserProperty,
   getUserProperty,
@@ -34,29 +33,24 @@ function RegisterPage({
         <div className="register-page container">
             <Switch>
                 <Route exact path="/register">
-                    {/*<Redirect to={`${path}/name`} />*/}
+                    <Redirect to={`${path}/name`} />
                 </Route>
-                {/*<Route path={`${path}/name`}>*/}
-                {/*    */}
-                {/*</Route>*/}
-                {/*<Route path={`${path}/age`}>*/}
-                {/*    */}
-                {/*</Route>*/}
-                {/*<Route path={`${path}/weight`}>*/}
-                {/*    */}
-                {/*</Route>*/}
-                {/*<Route path={`${path}/gender`}>*/}
-                {/*    */}
-                {/*</Route>*/}
+                <Route path={`${path}/name`}>
+                    <NameInput setName={setName} />
+                </Route>
+                <Route path={`${path}/age`}>
+                    <AgeInput getName={getName} setAge={setAge} />
+                </Route>
+                <Route path={`${path}/weight`}>
+                    <WeightInput setWeight={setWeight} />
+                </Route>
+                <Route path={`${path}/gender`}>
+                    <GenderInput
+                      setGender={setGender}
+                      setIsUserRegistered={setIsUserRegistered}
+                    />
+                </Route>
             </Switch>
-
-            <NameInput setName={setName} />
-            <AgeInput getName={getName} setAge={setAge} />
-            <WeightInput setWeight={setWeight} />
-            <GenderInput
-                setGender={setGender}
-                setIsUserRegistered={setIsUserRegistered}
-            />
         </div>
     );
 }
