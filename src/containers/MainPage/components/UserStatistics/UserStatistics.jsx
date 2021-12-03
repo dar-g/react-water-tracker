@@ -6,25 +6,24 @@ function UserStatistics () {
     const userConsumptionArr = UserService.getUserConsumption();
 
     const userDay = userConsumptionArr.map(item => {
-            const calcEachDayDrankPercent = UserService.calcDrankPercent(item.water);
-            const progressLineWidth = { width: calcEachDayDrankPercent+'%' };
-            const dateOptions = {
-                weekday: 'short',
-                month: 'short',
-                day: 'numeric'
-            };
-            const prettyDate = new Date(item.date).toLocaleDateString('en-EN', dateOptions);
+        const calcEachDayDrankPercent = UserService.calcDrankPercent(item.water);
+        const progressLineWidth = { width: calcEachDayDrankPercent+'%' };
+        const dateOptions = {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        };
+        const prettyDate = new Date(item.date).toLocaleDateString('en-EN', dateOptions);
 
-            return (
-                <div key={item.date} className={css.statisticsDay}>
-                    <div className={css.date}>{prettyDate}</div>
-                    <div className={css.waterHolder}>
-                        <div className={css.water} style={progressLineWidth} />
-                    </div>
+        return (
+            <div key={item.date} className={css.statisticsDay}>
+                <div className={css.date}>{prettyDate}</div>
+                <div className={css.waterHolder}>
+                    <div className={css.water} style={progressLineWidth} />
                 </div>
-            );
-        }
-    );
+            </div>
+        );
+    });
 
     return (
         <div className="user-statistics container">

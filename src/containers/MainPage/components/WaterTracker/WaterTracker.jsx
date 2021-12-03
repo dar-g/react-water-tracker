@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
 // todo: User Settings page: add inputs
-// todo: User Statistics charts
 
 function WaterTracker() {
     const today = getCurrentDay();
