@@ -1,10 +1,12 @@
-import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import NameInput from "./components/NameInput";
 import AgeInput from "./components/AgeInput";
 import WeightInput from "./components/WeightInput";
 import GenderInput from "./components/GenderInput";
 
-// todo: one page of registration instead of four
+// todo: show inputs one at a time
+// todo: add validation for input fields, disable button
+
 function RegisterPage({
   setUserProperty,
   getUserProperty,
@@ -32,25 +34,16 @@ function RegisterPage({
     return (
         <div className="register-page container">
             <Switch>
-                <Route exact path="/register">
-                    <Redirect to={`${path}/name`} />
-                </Route>
-                <Route path={`${path}/name`}>
-                    <NameInput setName={setName} />
-                </Route>
-                <Route path={`${path}/age`}>
-                    <AgeInput getName={getName} setAge={setAge} />
-                </Route>
-                <Route path={`${path}/weight`}>
-                    <WeightInput setWeight={setWeight} />
-                </Route>
-                <Route path={`${path}/gender`}>
-                    <GenderInput
-                      setGender={setGender}
-                      setIsUserRegistered={setIsUserRegistered}
-                    />
-                </Route>
+                <Route exact path="/register" />
             </Switch>
+
+            <NameInput setName={setName} />
+            <AgeInput getName={getName} setAge={setAge} />
+            <WeightInput setWeight={setWeight} />
+            <GenderInput
+                setGender={setGender}
+                setIsUserRegistered={setIsUserRegistered}
+            />
         </div>
     );
 }

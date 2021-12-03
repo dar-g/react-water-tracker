@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import UserService from "../../../services/UserService";
+import {useState} from "react";
 
 function GenderInput(props) {
     const onSelectChange = (event) => {
@@ -7,18 +8,21 @@ function GenderInput(props) {
         UserService.setUserGender(event.target.value);
     }
 
+    const [isClicked, setIsClicked] = useState(false);
+
     const onClickHandler = () => {
         UserService.saveUserSettingsToLS();
         props.setIsUserRegistered(true);
+        setIsClicked(true);
     };
 
     return (
-        <div className="gender-input register-form">
+        <div className={`${isClicked ? 'hidden' : null} gender-input register-form`}>
             <div className="input-wrapper">
                 <label>
                     Gender:
                     <select value={props.gender} onChange={onSelectChange}>
-                        <option value="not selected">not selected</option>
+                        <option value="other">other</option>
                         <option value="female">female</option>
                         <option value="male">male</option>
                     </select>

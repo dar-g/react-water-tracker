@@ -1,18 +1,20 @@
-import {Link} from "react-router-dom";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import UserService from "../../../services/UserService";
 
 function AgeInput(props) {
     const inputAgeRef = useRef();
 
+    const [isClicked, setIsClicked] = useState(false);
+
     const saveAge = () => {
         const ageFromInput = inputAgeRef.current.value;
         props.setAge(ageFromInput);
         UserService.setUserAge(ageFromInput);
+        setIsClicked(true);
     };
 
     return (
-        <div className="age-input register-form">
+        <div className={`${isClicked ? 'hidden' : null} age-input register-form`}>
             <p>Welcome {props.getName()}</p>
             <p>Through the next several steps please enter information about you:</p>
 
@@ -23,13 +25,12 @@ function AgeInput(props) {
                 </label>
             </div>
 
-            <Link
-                to="/register/weight"
+            <button
                 onClick={saveAge}
                 className="btn"
             >
                 Continue
-            </Link>
+            </button>
         </div>
     );
 }

@@ -1,18 +1,20 @@
-import {Link} from "react-router-dom";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import UserService from "../../../services/UserService";
 
 function WeightInput(props) {
     const inputWeightRef = useRef();
 
+    const [isClicked, setIsClicked] = useState(false);
+
     const saveWeight = () => {
         const weightFromInput = inputWeightRef.current.value;
         props.setWeight(weightFromInput);
         UserService.setUserWeight(weightFromInput);
+        setIsClicked(true);
     };
 
     return (
-        <div className="weight-input register-form">
+        <div className={`${isClicked ? 'hidden' : null} weight-input register-form`}>
             <div className="input-wrapper">
                 <label htmlFor="">
                     Weight:
@@ -21,13 +23,12 @@ function WeightInput(props) {
                 </label>
             </div>
 
-            <Link
-                to="/register/gender"
+            <button
                 onClick={saveWeight}
                 className="btn"
             >
                 Continue
-            </Link>
+            </button>
         </div>
     );
 }
