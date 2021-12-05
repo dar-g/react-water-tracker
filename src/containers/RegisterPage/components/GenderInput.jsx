@@ -9,6 +9,7 @@ function GenderInput(props) {
 
     const onClickHandler = () => {
         UserService.saveUserSettingsToLS();
+        props.setIsUserRegistered(true);
     };
 
     return (

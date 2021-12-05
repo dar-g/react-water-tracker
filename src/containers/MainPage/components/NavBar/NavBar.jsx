@@ -9,13 +9,13 @@ import settings from "./icons/settings.svg";
 function NavBar () {
     return (
         <nav className={css.bottomMenu}>
-            <Link to="/user-statistics" className={css.menuBtn}>
+            <Link to="/main/statistics" className={css.menuBtn}>
                 <img src={stat} alt="Statistics" className={css.menuBtnImg} />
             </Link>
-            <Link to="/main" className={css.menuBtn}>
+            <Link to="/main/tracker" className={css.menuBtn}>
                 <img src={water} alt="Water" className={css.menuBtnImg} />
             </Link>
-            <Link to="/user-settings" className={css.menuBtn}>
+            <Link to="/main/settings" className={css.menuBtn}>
                 <img src={settings} alt="Settings" className={css.menuBtnImg} />
             </Link>
         </nav>
