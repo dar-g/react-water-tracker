@@ -1,5 +1,6 @@
 import {useRef, useState} from "react";
 import UserService from "../../../services/UserService";
+import css from "../RegisterPage.module.css";
 
 function AgeInput(props) {
     const inputAgeRef = useRef();
@@ -14,7 +15,7 @@ function AgeInput(props) {
     };
 
     return (
-        <div className={`${isClicked ? 'hidden' : null} age-input register-form`}>
+        <div className={`${css.registerForm} ${isClicked ? `${css.hidden}` : ''} age-input`}>
             <p>Welcome {props.getName()}</p>
             <p>Through the next several steps please enter information about you:</p>
 

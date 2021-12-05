@@ -3,8 +3,8 @@ import NameInput from "./components/NameInput";
 import AgeInput from "./components/AgeInput";
 import WeightInput from "./components/WeightInput";
 import GenderInput from "./components/GenderInput";
+import css from "./RegisterPage.module.css";
 
-// todo: show inputs one at a time
 // todo: add validation for input fields, disable button
 
 function RegisterPage({
@@ -32,7 +32,7 @@ function RegisterPage({
     let { path } = useRouteMatch();
 
     return (
-        <div className="register-page container">
+        <div className={css.registerPage}>
             <Switch>
                 <Route exact path="/register" />
             </Switch>

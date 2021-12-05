@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import UserService from "../../../services/UserService";
 import {useState} from "react";
+import css from "../RegisterPage.module.css";
 
 function GenderInput(props) {
     const onSelectChange = (event) => {
@@ -17,7 +18,7 @@ function GenderInput(props) {
     };
 
     return (
-        <div className={`${isClicked ? 'hidden' : null} gender-input register-form`}>
+        <div className={`${css.registerForm} ${isClicked ? `${css.hidden}` : ''} gender-input`}>
             <div className="input-wrapper">
                 <label>
                     Gender:

@@ -1,5 +1,6 @@
 import {useRef, useState} from "react";
 import UserService from "../../../services/UserService";
+import css from "../RegisterPage.module.css";
 
 function WeightInput(props) {
     const inputWeightRef = useRef();
@@ -14,7 +15,7 @@ function WeightInput(props) {
     };
 
     return (
-        <div className={`${isClicked ? 'hidden' : null} weight-input register-form`}>
+        <div className={`${css.registerForm} ${isClicked ? `${css.hidden}` : ''} weight-input`}>
             <div className="input-wrapper">
                 <label htmlFor="">
                     Weight:

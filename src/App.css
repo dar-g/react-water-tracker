@@ -56,17 +56,6 @@ body {
   padding: 20px;
 }
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.register-form.hidden {
-  display: none;
-}
-
 .input-wrapper {
   display: flex;
   flex-direction: column;

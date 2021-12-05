@@ -1,5 +1,6 @@
 import {useRef, useState} from "react";
 import UserService from "../../../services/UserService";
+import css from "../RegisterPage.module.css";
 
 function NameInput(props) {
     const inputNameRef = useRef();
@@ -14,7 +15,7 @@ function NameInput(props) {
     };
 
     return (
-        <div className={`${isClicked ? 'hidden' : null} name-input register-form`}>
+        <div className={`${css.registerForm} ${isClicked ? `${css.hidden}` : ''} name-input`}>
             <h1>Let's start</h1>
 
             <div className="input-wrapper">
