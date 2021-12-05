@@ -1,20 +1,21 @@
-import {Link} from "react-router-dom";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import UserService from "../../../services/UserService";
-
-//todo: add validation for input fields, disable button
+import css from "../RegisterPage.module.css";
 
 function NameInput(props) {
     const inputNameRef = useRef();
+
+    const [isClicked, setIsClicked] = useState(false);
 
     const saveName = () => {
         const nameFromInput = inputNameRef.current.value;
         props.setName(nameFromInput);
         UserService.setUserName(nameFromInput);
+        setIsClicked(true);
     };
 
     return (
-        <div className="name-input register-form">
+        <div className={`${css.registerForm} ${isClicked ? `${css.hidden}` : ''} name-input`}>
             <h1>Let's start</h1>
 
             <div className="input-wrapper">
@@ -25,13 +26,12 @@ function NameInput(props) {
                 <div className="error">Error</div>
             </div>
 
-            <Link
-                to="/register/age"
+            <button
                 onClick={saveName}
                 className="btn"
             >
                 Continue
-            </Link>
+            </button>
         </div>
     );
 }

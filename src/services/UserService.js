@@ -40,6 +40,10 @@ const UserService = (function () {
         userSettings.gender = gender;
     }
 
+    function getUserConsumption () {
+        return userSettings.consumption;
+    }
+
     function saveUserSettingsToLS () {
         const userToString = JSON.stringify(userSettings);
         localStorage.setItem('user', userToString);
@@ -50,7 +54,17 @@ const UserService = (function () {
             setTimeout(() => {
                 try {
                     const userFromLS = localStorage.getItem('user');
-                    resolve(userFromLS);
+                    const parsedUserObj = userFromLS ? JSON.parse(userFromLS) : userSettings;
+
+                    if (userFromLS) {
+                        userSettings.name = parsedUserObj.name;
+                        userSettings.age = parsedUserObj.age;
+                        userSettings.weight = parsedUserObj.weight;
+                        userSettings.gender = parsedUserObj.gender;
+                        userSettings.consumption = parsedUserObj.consumption;
+                    }
+
+                    resolve(parsedUserObj);
                 } catch (error) {
                     reject(error);
                 }
@@ -58,21 +72,15 @@ const UserService = (function () {
         });
     }
 
-    function saveLiquidConsumption (date, water) {
-        return {
-            date,
-            water
-        }
-    }
-
-    function updateConsumptionArr (item, sign) {
-        const consumptionArr = userSettings.consumption;
+    function updateConsumptionArr (water, sign) {
         const today = getCurrentDay();
+        const consumptionArr = userSettings.consumption;
+        const dayObj = {date:today, water};
         const todayItemIndex = consumptionArr.findIndex((i) => i.date === today);
         const hasTodaysObj = consumptionArr.find(i => i.date === today);
 
         if (consumptionArr.length === 0 || hasTodaysObj === undefined) {
-            consumptionArr.push(item);
+            consumptionArr.push(dayObj);
         } else if (sign === '+') {
             consumptionArr[todayItemIndex].water += 200;
         } else if (sign === '-') {
@@ -81,9 +89,16 @@ const UserService = (function () {
     }
 
     function calcRequiredWaterQuantity () {
-        if (userSettings.weight !== '' || userSettings.weight !== 0) {
-            return (userSettings.weight * 0.03).toFixed(1);
+        if (userSettings.weight === '' || userSettings.weight === '0') {
+            return 1500;
+        } else {
+            return (userSettings.weight * 0.03 * 1000).toFixed(1);
         }
+    }
+
+    function calcDrankPercent (drankCount) {
+        const requiredWaterQuantity = calcRequiredWaterQuantity();
+        return drankCount / requiredWaterQuantity * 100;
     }
 
     return {
@@ -91,11 +106,12 @@ const UserService = (function () {
         setUserAge,
         setUserWeight,
         setUserGender,
+        getUserConsumption,
         saveUserSettingsToLS,
         getUserObjFromLS,
-        saveLiquidConsumption,
         updateConsumptionArr,
-        calcRequiredWaterQuantity
+        calcRequiredWaterQuantity,
+        calcDrankPercent
     };
 })();
 

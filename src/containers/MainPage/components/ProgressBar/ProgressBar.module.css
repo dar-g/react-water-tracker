@@ -1,0 +1,19 @@
+.progressBarText {
+    margin-bottom: 15px;
+}
+
+.progressBarHolder {
+    height: 25px;
+    background: lightgrey;
+    border: 3px solid lightgrey;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+.progressBar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));
+    border-radius: 5px;
+    transition: width .3s ease;
+}

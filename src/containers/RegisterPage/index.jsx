@@ -1,8 +1,11 @@
-import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import NameInput from "./components/NameInput";
 import AgeInput from "./components/AgeInput";
 import WeightInput from "./components/WeightInput";
 import GenderInput from "./components/GenderInput";
+import css from "./RegisterPage.module.css";
+
+// todo: add validation for input fields, disable button
 
 function RegisterPage({
   setUserProperty,
@@ -29,27 +32,18 @@ function RegisterPage({
     let { path } = useRouteMatch();
 
     return (
-        <div className="register-page container">
+        <div className={css.registerPage}>
             <Switch>
-                <Route exact path="/register">
-                    <Redirect to={`${path}/name`} />
-                </Route>
-                <Route path={`${path}/name`}>
-                    <NameInput setName={setName} />
-                </Route>
-                <Route path={`${path}/age`}>
-                    <AgeInput getName={getName} setAge={setAge} />
-                </Route>
-                <Route path={`${path}/weight`}>
-                    <WeightInput setWeight={setWeight} />
-                </Route>
-                <Route path={`${path}/gender`}>
-                    <GenderInput
-                      setGender={setGender}
-                      setIsUserRegistered={setIsUserRegistered}
-                    />
-                </Route>
+                <Route exact path="/register" />
             </Switch>
+
+            <NameInput setName={setName} />
+            <AgeInput getName={getName} setAge={setAge} />
+            <WeightInput setWeight={setWeight} />
+            <GenderInput
+                setGender={setGender}
+                setIsUserRegistered={setIsUserRegistered}
+            />
         </div>
     );
 }

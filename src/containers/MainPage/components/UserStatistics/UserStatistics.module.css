@@ -1,0 +1,33 @@
+.content {
+    height: 100%;
+}
+
+.statisticsChart {
+    overflow-y: scroll;
+    height: 380px;
+}
+
+.statisticsDay {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.date {
+    margin-right: 5px;
+}
+
+.waterHolder {
+    width: calc(100% - 90px);
+    height: 15px;
+    background: lightgrey;
+    border-radius: 5px;
+    overflow-x: hidden;
+}
+
+.water {
+    height: 100%;
+    background: linear-gradient(to right, rgb(58, 123, 213), rgb(58, 96, 115));
+    border-radius: 5px;
+}

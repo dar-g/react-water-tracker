@@ -1,7 +1,7 @@
 import { Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import WaterTracker from './components/WaterTracker/WaterTracker';
 import UserSettings from './components/UserSettings';
-import UserStatistics from './components/UserStatistics';
+import UserStatistics from './components/UserStatistics/UserStatistics';
 
 const MainPage = ({
   isUserRegistered,
@@ -16,7 +16,7 @@ const MainPage = ({
   };
 
   return (
-    <div style={{height: '100%'}}>
+    <main className="main">
       <Switch>
         <Route exact path="/main">
             <Redirect to={`${path}/tracker`} />
@@ -31,7 +31,7 @@ const MainPage = ({
             <UserSettings getUserProperty={getUserProperty} />
         </Route>
       </Switch>
-    </div>
+    </main>
 
   );
 }
