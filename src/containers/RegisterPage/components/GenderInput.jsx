@@ -23,9 +23,10 @@ function GenderInput(props) {
                 <label>
                     Gender:
                     <select value={props.gender} onChange={onSelectChange}>
-                        <option value="other">other</option>
+                        <option value="not selected">not selected</option>
                         <option value="female">female</option>
                         <option value="male">male</option>
+                        <option value="other">other</option>
                     </select>
                 </label>
             </div>
