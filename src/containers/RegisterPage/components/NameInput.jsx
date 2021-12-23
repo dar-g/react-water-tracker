@@ -11,15 +11,18 @@ function NameInput(props) {
     const [disableBtn, setDisableBtn] = useState(true);
 
 
-    const hasName = (e) => {
+    const isNameValid = (e) => {
         let inputNameValue = e.target.value;
 
         if (inputNameValue === '') {
             setNameError('Name should not be empty');
+            setDisableBtn(true);
         } else if (inputNameValue.length > 15) {
             setNameError('Name should not contain more than 15 characters');
+            setDisableBtn(true);
         } else if (!(inputNameValue.match(/^[a-zA-Z]+$/))) {
             setNameError('Name should contain only letters');
+            setDisableBtn(true);
         } else {
             setNameInput(e.target.value);
             setNameError('');
@@ -43,10 +46,10 @@ function NameInput(props) {
                     <input
                         type="text"
                         placeholder="Enter your name or nick"
-                        onChange={hasName}
+                        onChange={isNameValid}
                     />
                 </label>
-                <div className="error">{nameError}</div>
+                <div className={css.error}>{nameError}</div>
             </div>
 
             <button
