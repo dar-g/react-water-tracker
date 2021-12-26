@@ -8,12 +8,6 @@ function AgeInput(props) {
     const [ageError, setAgeError] = useState('');
     const [disableBtn, setDisableBtn] = useState(true);
 
-    // regexp
-    // /\d/g - only digits
-    // /^[0-9]*$/
-    // /^[0-9]*$/g
-    // /^\d+$/
-
     const isAgeValid = (e) => {
         let inputAgeValue = e.target.value;
 
@@ -23,12 +17,12 @@ function AgeInput(props) {
         } else if (!(inputAgeValue.match(/^\d+$/))) {
             setAgeError('Age should contain only numbers');
             setDisableBtn(true);
-        } else if (inputAgeValue === 0 || inputAgeValue > 120) {
+        } else if (inputAgeValue <= 0 || inputAgeValue > 120) {
             setAgeError('Unbelievable age');
             setDisableBtn(true);
         }
         else {
-            setAgeInput(e.target.value);
+            setAgeInput(+inputAgeValue);
             setAgeError('');
             setDisableBtn(false);
         }

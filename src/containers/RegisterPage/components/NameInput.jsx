@@ -2,8 +2,6 @@ import {useState} from "react";
 import UserService from "../../../services/UserService";
 import css from "../RegisterPage.module.css";
 
-// todo: disable button and show error message under input
-
 function NameInput(props) {
     const [isHidden, setIsHidden] = useState(false);
     const [nameInput, setNameInput] = useState('');
@@ -24,7 +22,7 @@ function NameInput(props) {
             setNameError('Name should contain only letters');
             setDisableBtn(true);
         } else {
-            setNameInput(e.target.value);
+            setNameInput(inputNameValue);
             setNameError('');
             setDisableBtn(false);
         }

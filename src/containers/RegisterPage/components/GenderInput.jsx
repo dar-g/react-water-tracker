@@ -9,16 +9,16 @@ function GenderInput(props) {
         UserService.setUserGender(event.target.value);
     }
 
-    const [isClicked, setIsClicked] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
 
     const onClickHandler = () => {
         UserService.saveUserSettingsToLS();
         props.setIsUserRegistered(true);
-        setIsClicked(true);
+        setIsHidden(true);
     };
 
     return (
-        <div className={`${css.registerForm} ${isClicked ? `${css.hidden}` : ''} gender-input`}>
+        <div className={`${css.registerForm} ${isHidden ? `${css.hidden}` : ''} gender-input`}>
             <div className="input-wrapper">
                 <label>
                     Gender:
