@@ -4,11 +4,11 @@ import css from "../RegisterPage.module.css";
 
 function WeightInput(props) {
     const [isHidden, setIsHidden] = useState(false);
-    const [weightInput, setWeightInput] = useState('');
+    const [weightInputValue, setWeightInputValue] = useState('');
     const [weightError, setWeightError] = useState('');
     const [disableBtn, setDisableBtn] = useState(true);
 
-   const isWeightValid = (e) => {
+   const weightValidation = (e) => {
        let inputWeightValue = e.target.value;
 
        if (inputWeightValue === '') {
@@ -22,15 +22,15 @@ function WeightInput(props) {
            setDisableBtn(true);
        }
        else {
-           setWeightInput(+inputWeightValue);
+           setWeightInputValue(+inputWeightValue);
            setWeightError('');
            setDisableBtn(false);
        }
     }
 
     const saveWeight = () => {
-        props.setWeight(weightInput);
-        UserService.setUserWeight(weightInput);
+        props.setWeight(weightInputValue);
+        UserService.setUserWeight(weightInputValue);
         setIsHidden(true);
     };
 
@@ -39,7 +39,7 @@ function WeightInput(props) {
             <div className="input-wrapper">
                 <label htmlFor="">
                     Weight:
-                    <input type="number" onChange={isWeightValid} />
+                    <input type="number" onChange={weightValidation} />
                     <span>kg</span>
                 </label>
                 <div className={css.error}>{weightError}</div>

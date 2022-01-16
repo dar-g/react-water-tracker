@@ -4,11 +4,11 @@ import css from "../RegisterPage.module.css";
 
 function AgeInput(props) {
     const [isHidden, setIsHidden] = useState(false);
-    const [ageInput, setAgeInput] = useState('');
+    const [ageInputValue, setAgeInputValue] = useState('');
     const [ageError, setAgeError] = useState('');
     const [disableBtn, setDisableBtn] = useState(true);
 
-    const isAgeValid = (e) => {
+    const ageValidation = (e) => {
         let inputAgeValue = e.target.value;
 
         if (inputAgeValue === '') {
@@ -20,17 +20,16 @@ function AgeInput(props) {
         } else if (inputAgeValue <= 0 || inputAgeValue > 120) {
             setAgeError('Unbelievable age');
             setDisableBtn(true);
-        }
-        else {
-            setAgeInput(+inputAgeValue);
+        } else {
+            setAgeInputValue(+inputAgeValue);
             setAgeError('');
             setDisableBtn(false);
         }
     }
 
     const saveAge = () => {
-        props.setAge(ageInput);
-        UserService.setUserAge(ageInput);
+        props.setAge(ageInputValue);
+        UserService.setUserAge(ageInputValue);
         setIsHidden(true);
     };
 
@@ -45,7 +44,7 @@ function AgeInput(props) {
                     <input
                         type="number"
                         placeholder="How old are you?"
-                        onChange={isAgeValid}
+                        onChange={ageValidation}
                     />
                 </label>
                 <div className={css.error}>{ageError}</div>

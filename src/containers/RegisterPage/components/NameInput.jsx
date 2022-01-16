@@ -4,12 +4,12 @@ import css from "../RegisterPage.module.css";
 
 function NameInput(props) {
     const [isHidden, setIsHidden] = useState(false);
-    const [nameInput, setNameInput] = useState('');
+    const [nameInputValue, setNameInputValue] = useState('');
     const [nameError, setNameError] = useState('');
     const [disableBtn, setDisableBtn] = useState(true);
 
 
-    const isNameValid = (e) => {
+    const nameValidation = (e) => {
         let inputNameValue = e.target.value;
 
         if (inputNameValue === '') {
@@ -22,15 +22,15 @@ function NameInput(props) {
             setNameError('Name should contain only letters');
             setDisableBtn(true);
         } else {
-            setNameInput(inputNameValue);
+            setNameInputValue(inputNameValue);
             setNameError('');
             setDisableBtn(false);
         }
     }
 
     const saveName = () => {
-        props.setName(nameInput);
-        UserService.setUserName(nameInput);
+        props.setName(nameInputValue);
+        UserService.setUserName(nameInputValue);
         setIsHidden(true);
     };
 
@@ -44,7 +44,7 @@ function NameInput(props) {
                     <input
                         type="text"
                         placeholder="Enter your name or nick"
-                        onChange={isNameValid}
+                        onChange={nameValidation}
                     />
                 </label>
                 <div className={css.error}>{nameError}</div>
